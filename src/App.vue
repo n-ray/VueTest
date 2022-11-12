@@ -1,18 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <HelloWorld/> -->
+    <BaseCom/>
+   
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+import BaseCom from './components/BaseCom.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: 'App',//当前组件的名称
+  // el:'#app',//
+  data(){
+    return{}
+  },
+  created:function(){//程序挂载之前执行  例如 初始化data
+    
+  },
+  components: {//组件
+    // HelloWorld,
+    BaseCom
+  },
+  mounted:function(){//页面渲染完成 可以写代码了 操作DOM
+   
+  },
+  methods:{// 方法
+   
+  },
+  watch:{//观察数据
+    
   }
+
+
+
+
+
+  
+
 }
 </script>
 
