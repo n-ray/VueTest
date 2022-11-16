@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <!-- <HelloWorld/> -->
-    <BaseCom/>
+    <BaseCom name="张三" :age="18"/>
+    <SchoolName/>
    
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import BaseCom from './components/BaseCom.vue'
+import BaseCom from './components/BaseCom'
+import SchoolName from './components/SchoolName.vue'
 
 export default {
   name: 'App',//当前组件的名称
@@ -21,10 +23,11 @@ export default {
   },
   components: {//组件
     // HelloWorld,
-    BaseCom
+    BaseCom,
+    SchoolName
   },
   mounted:function(){//页面渲染完成 可以写代码了 操作DOM
-   
+   console.log(this,"APP");
   },
   methods:{// 方法
    

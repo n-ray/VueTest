@@ -1,0 +1,33 @@
+<template>
+ <div>
+    <h1 @click="say">{{ msg }}</h1>
+
+ </div>
+</template>
+
+<script>
+    import { myMixin } from "./mxin.js";
+    export default {
+    name: "SchoolName",
+    data() {
+        return {
+            // msg: "school",
+        };
+    },
+    created(){
+        console.log("我是School中的created生命周期函数");
+    },
+    mounted(){
+        console.log("School初始化完毕");
+    },
+    methods:{
+        say(){
+            console.log('SchoolSay!!');
+        }
+    },
+    mixins: [myMixin],
+};
+</script>
+
+<style>
+</style>
