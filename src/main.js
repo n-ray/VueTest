@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-
+import MyPlugin from './plugins'
 Vue.config.productionTip = false
-
+Vue.use(MyPlugin);//使用插件
 new Vue({
   render: h => h(App),            
 }).$mount('#app')

@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <!-- <HelloWorld/> -->
-    <BaseCom name="张三" :age="18"/>
-    <SchoolName/>
+    <BaseCom name="张三" :age="18" :obj="obj"/>
+    <!-- 命名驼峰 使用可以短横线 -->
+    <school-name/>
    
   </div>
 </template>
@@ -16,7 +17,12 @@ export default {
   name: 'App',//当前组件的名称
   // el:'#app',//
   data(){
-    return{}
+    return{
+      obj:{
+        color:'red',
+        size:20
+      }
+    }
   },
   created:function(){//程序挂载之前执行  例如 初始化data
     
