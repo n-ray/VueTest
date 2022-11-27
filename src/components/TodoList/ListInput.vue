@@ -1,6 +1,10 @@
 <template>
-    <div>
-        <ItemList/>
+    <div class="listBox">
+        <ul>
+            <li v-for="item in todoList" :key="item.id">
+                <ItemList :obj="item" :changeCheck="changeCheck"/>
+            </li>
+        </ul>
     </div>
 </template>
   
@@ -9,6 +13,7 @@
   export default {
       name:"ListInput",
       components:{ ItemList },
+      props:['todoList','changeCheck'],
       data(){
           return {
               
@@ -17,6 +22,17 @@
   }
   </script>
   
-  <style>
-  
+  <style scoped>
+   .listBox{
+        margin-top:1rem;
+        margin-bottom:1rem;
+    }
+    li{
+        list-style-type: none;
+    }
+    ul{
+        padding-left: 0.4rem;
+        margin: 0px;
+        width:98%;
+    }
   </style>
