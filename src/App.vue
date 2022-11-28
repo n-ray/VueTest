@@ -7,8 +7,8 @@
    <div class="box">
       <HeaderInput :receive="receive"/>
       <!-- 逐层传递 先传给子元素再由子元素传给下级元素 -->
-      <ListInput :todoList="todoList" :changeCheck = "changeCheck"/>
-       <FooterShow/>
+      <ListInput :todoList="todoList" :changeCheck = "changeCheck" :deleteItem="deleteItem"/>
+       <FooterShow :todoList="todoList" :checkAllTodo="checkAllTodo" :deleteFinish="deleteFinish"/>
    </div>
   </div>
 </template>
@@ -54,13 +54,29 @@ export default {
     },
     changeCheck(id){
       this.todoList.forEach((item)=>{
-        console.log(item.id,id,item.id===id);
         if(item.id===id){
           item.isCheck = !item.isCheck;
-          console.log(item.isCheck,"zzz");
         }
       })
-      console.log(this.todoList);
+    },
+    deleteItem(id){
+      this.todoList = this.todoList.filter(item=>item.id!=id);
+
+     /*  let idx;
+      this.todoList.forEach((item,index)=>{
+        if(item.id===id){
+          idx = index;
+        }
+      })
+      this.todoList.splice(idx,1); */
+    },
+    checkAllTodo(boo){
+      this.todoList.forEach(item=>{
+        item.isCheck = boo;
+      })
+    },
+    deleteFinish(){
+      this.todoList = this.todoList.filter(item=>item.isCheck===false);
     }
   },
   watch:{//观察数据

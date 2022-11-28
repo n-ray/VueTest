@@ -2,7 +2,7 @@
     <div class="listBox">
         <ul>
             <li v-for="item in todoList" :key="item.id">
-                <ItemList :obj="item" :changeCheck="changeCheck"/>
+                <ItemList :obj="item" :changeCheck="changeCheck" :deleteItem="deleteItem"/>
             </li>
         </ul>
     </div>
@@ -13,7 +13,7 @@
   export default {
       name:"ListInput",
       components:{ ItemList },
-      props:['todoList','changeCheck'],
+      props:['todoList','changeCheck','deleteItem'],
       data(){
           return {
               
