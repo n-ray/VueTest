@@ -29,7 +29,7 @@ export default {
         color:'red',
         size:20
       },
-      todoList:[
+      todoList:JSON.parse(window.localStorage.getItem('todoList')) || [//去读取本地存储的数据展示，如果没有的话就用默认的数据展示
         {id:'001',value:'吃饭',isCheck:false},
         {id:'002',value:'喝酒',isCheck:true},
         {id:'003',value:'睡觉',isCheck:false},
@@ -80,7 +80,12 @@ export default {
     }
   },
   watch:{//观察数据
-    
+    todoList:{
+      deep:true,//开启监控数组内部元素的变化
+      handler(value){
+        window.localStorage.setItem('todoList',JSON.stringify(value));//改变todolist的时候就把内容放到localStorage中
+      }
+    }
   }
 
 
