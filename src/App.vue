@@ -11,17 +11,17 @@
        <FooterShow :todoList="todoList" :checkAllTodo="checkAllTodo" :deleteFinish="deleteFinish"/>
    </div>
 
-<!-- 以下3种方式实现子给父传数据 -->
-   <!-- 通过props实现获取子给父传数据 -->
-   <student :getName="getName"/>
-   <!-- 通过自定义事件获取 先绑定自定义事件 然后在组件内部通过this.$emit触发 子给父传数据-->
-   <!-- <school @getName="getName"/> -->
-   <!-- 通过ref 直接在父组件获取子组件实例对象然后获取数据 -->
-   <school ref="school" @click.native="clickTest"/>
-   <!-- 绑定原生事件需要添加native 否则默认是自定义事件 -->
-
-
-
+   <div v-if="false">
+      <!-- 以下3种方式实现子给父传数据 -->
+      <!-- 通过props实现获取子给父传数据 -->
+      <student :getName="getName"/>
+      <!-- 通过自定义事件获取 先绑定自定义事件 然后在组件内部通过this.$emit触发 子给父传数据-->
+      <!-- <school @getName="getName"/> -->
+      <!-- 通过ref 直接在父组件获取子组件实例对象然后获取数据 -->
+      <school ref="school" @click.native="clickTest"/>
+      <!-- 绑定原生事件需要添加native 否则默认是自定义事件 -->
+   </div>
+   <father/>
 
 
 
@@ -38,6 +38,7 @@ import ListInput from './components/TodoList/ListInput.vue'
 import FooterShow from './components/TodoList/FooterShow.vue'
 import Student from './components/customizeEvent/Student'
 import School from './components/customizeEvent/School'
+import Father from './components/mainEventLine/Father.vue'
 export default {
   name: 'App',//当前组件的名称
   // el:'#app',//
@@ -62,12 +63,13 @@ export default {
     // BaseCom,
     // SchoolName
     HeaderInput,ListInput,FooterShow,
-    Student,School
+    Student,School,
+    Father
   },
   mounted:function(){//页面渲染完成 可以写代码了 操作DOM
   //  console.log(this,"APP");
     let school = this.$refs.school;//获取实例对象
-    school.$on('getName',this.getName);//通过实例对象中的自定义方法getName触发 实现子给父传数据  （这里需要注意如果把回调直接写在这里this指向的是school而不是APP！写成箭头函数就没这个问题）
+    if(school) school.$on('getName',this.getName);//通过实例对象中的自定义方法getName触发 实现子给父传数据  （这里需要注意如果把回调直接写在这里this指向的是school而不是APP！写成箭头函数就没这个问题）
   },
   methods:{// 方法
     receive(obj){//定义一个接收方法，然后传给子组件去用 数据却留在父组件这里
