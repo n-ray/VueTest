@@ -4,7 +4,7 @@
     <!-- <BaseCom name="张三" :age="18" :obj="obj"/> -->
     <!-- 命名驼峰 使用可以短横线 -->
     <!-- <school-name/> -->
-   <div class="box" v-if="false">
+   <div class="box">
       <HeaderInput :receive="receive"/>
       <!-- 逐层传递 先传给子元素再由子元素传给下级元素 -->
       <ListInput :todoList="todoList" :changeCheck = "changeCheck" :deleteItem="deleteItem"/>
@@ -21,7 +21,7 @@
       <school ref="school" @click.native="clickTest"/>
       <!-- 绑定原生事件需要添加native 否则默认是自定义事件 -->
    </div>
-   <father/>
+   <father v-if="false"/>
 
 
 

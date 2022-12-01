@@ -4,8 +4,10 @@
             <!-- 这里不采用v-model是props中的值不应该轻易的去改 而是调用上级组件中的方法去改变上级组件中的数据 -->
             <!-- 用checked方法不好使 只能改用v-model 然后用一个值去接一下props里过来的值 然后改的时候也要去改父组件中的值  折中的办法。。。 -->
             <el-checkbox v-model="checked" @change="selectHandler(obj.id)"></el-checkbox>
-            <span> {{ obj.value }}</span>
+            <span v-show="!obj.showEdit"> {{ obj.value }}</span>
+            <input v-show="obj.showEdit" type="text" :value="obj.value">
             <el-button @click="deleteHandler(obj.id)" size="mini" type="danger">删除</el-button>
+            <el-button @click="editHandler(obj)" size="mini" type="primary">编辑</el-button>
         </div>
     </div>
   </template>
@@ -16,7 +18,7 @@
       props:["obj","changeCheck","deleteItem"],
       data(){
           return {  
-            checked:this.obj.isCheck
+            checked:this.obj.isCheck,
           }
       },
       methods:{
@@ -31,6 +33,9 @@
         },
         deleteHandler(id){
             this.deleteItem(id);
+        },
+        editHandler(obj){
+            this.$set(obj,'showEdit',true);
         }
       },
       watch:{
@@ -44,7 +49,7 @@
   <style scoped>
     button{
         float: right;
-        margin-right:10px;
+        margin-right:5px;
         display: none;
     }
     .itemBox{
