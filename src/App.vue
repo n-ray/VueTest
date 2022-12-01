@@ -38,7 +38,7 @@ import ListInput from './components/TodoList/ListInput.vue'
 import FooterShow from './components/TodoList/FooterShow.vue'
 import Student from './components/customizeEvent/Student'
 import School from './components/customizeEvent/School'
-import Father from './components/mainEventLine/Father.vue'
+import Father from './components/pubsub/Father.vue'
 export default {
   name: 'App',//当前组件的名称
   // el:'#app',//

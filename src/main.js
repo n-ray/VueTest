@@ -9,7 +9,7 @@ Vue.use(ElementUI);
 new Vue({
   render: h => h(App), 
   beforeCreate(){
-    Vue.prototype.$bus = this;//安装全局事件总线  把$bus挂到Vue的prototype上 这样所有的组件都能拿到
+    Vue.prototype.$bus = this;//安装全局事件总线  把$bus挂到Vue的prototype上 这样所有的组件都能拿到然后通过这个$bus来传递数据
   }           
 }).$mount('#app')
 
