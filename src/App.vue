@@ -24,8 +24,6 @@
    <father v-if="false"/>
 
 
-
-
   </div>
 </template>
 
@@ -70,10 +68,19 @@ export default {
   //  console.log(this,"APP");
     let school = this.$refs.school;//获取实例对象
     if(school) school.$on('getName',this.getName);//通过实例对象中的自定义方法getName触发 实现子给父传数据  （这里需要注意如果把回调直接写在这里this指向的是school而不是APP！写成箭头函数就没这个问题）
+    this.$bus.$on('updateItme',this.updateItem);
   },
   methods:{// 方法
     receive(obj){//定义一个接收方法，然后传给子组件去用 数据却留在父组件这里
       this.todoList.unshift(obj);
+    },
+    updateItem(id,value){
+      console.log(id);
+      this.todoList.forEach(item=>{
+        if(item.id == id){
+          item.value = value;
+        }
+      })
     },
     changeCheck(id){
       this.todoList.forEach((item)=>{
@@ -117,6 +124,9 @@ export default {
         window.localStorage.setItem('todoList',JSON.stringify(value));//改变todolist的时候就把内容放到localStorage中
       }
     }
+  },
+  beforeDestroy(){
+    this.$bus.$off('updateItme');
   }
 
 

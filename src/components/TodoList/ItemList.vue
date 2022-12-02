@@ -5,10 +5,11 @@
             <!-- 用checked方法不好使 只能改用v-model 然后用一个值去接一下props里过来的值 然后改的时候也要去改父组件中的值  折中的办法。。。 -->
             <el-checkbox v-model="checked" @change="selectHandler(obj.id)"></el-checkbox>
             <span v-show="!obj.showEdit"> {{ obj.value }}</span>
-            <input v-show="obj.showEdit" type="text" :value="obj.value">
+            <input ref="contentInput" size="mini" v-show="obj.showEdit" @blur="blurHandler(obj,$event)" :value="obj.value" placeholder="请输入内容"></input>
             <el-button @click="deleteHandler(obj.id)" size="mini" type="danger">删除</el-button>
-            <el-button @click="editHandler(obj)" size="mini" type="primary">编辑</el-button>
+            <el-button v-show="!obj.showEdit" @click="editHandler(obj)" size="mini" type="primary">编辑</el-button>
         </div>
+        
     </div>
   </template>
   
@@ -22,6 +23,7 @@
           }
       },
       methods:{
+        
         overHandler(){
             this.isShow = true;
         },
@@ -35,13 +37,32 @@
             this.deleteItem(id);
         },
         editHandler(obj){
-            this.$set(obj,'showEdit',true);
+            if(obj.hasOwnProperty('showEdit')){
+                obj.showEdit = true;
+            }else{
+                this.$set(obj,'showEdit',true);
+            }
+            this.$nextTick(function (params) {
+                this.$refs.contentInput.focus();
+                console.log(this.$refs.contentInput);
+            })
+        },
+        blurHandler(obj,e){
+            // obj.value = e.target.value;
+            obj.showEdit = false;
+            if(e.target.value.trim() == ''){
+                return alert('不能为空');
+            }
+            this.$bus.$emit('updateItme',obj.id,e.target.value);
         }
       },
       watch:{
         'obj.isCheck'(now,old){
            this.checked = now;
         }
+      },
+      beforeDestroy(){
+        //  this.$bus.$off('updateItme');
       }
   }
   </script>
