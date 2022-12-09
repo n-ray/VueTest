@@ -4,7 +4,7 @@
     <!-- <BaseCom name="张三" :age="18" :obj="obj"/> -->
     <!-- 命名驼峰 使用可以短横线 -->
     <!-- <school-name/> -->
-   <div class="box">
+   <div class="box" v-if="false">
       <HeaderInput :receive="receive"/>
       <!-- 逐层传递 先传给子元素再由子元素传给下级元素 -->
       <ListInput :todoList="todoList" :changeCheck = "changeCheck" :deleteItem="deleteItem"/>
@@ -22,8 +22,8 @@
       <!-- 绑定原生事件需要添加native 否则默认是自定义事件 -->
    </div>
    <father v-if="false"/>
-
-
+   <TransitionAnimate v-if="false"/>
+   <button @click="getStudentName" v-if="false">获取学生信息</button>
   </div>
 </template>
 
@@ -37,6 +37,9 @@ import FooterShow from './components/TodoList/FooterShow.vue'
 import Student from './components/customizeEvent/Student'
 import School from './components/customizeEvent/School'
 import Father from './components/pubsub/Father.vue'
+import TransitionAnimate from './components/TransitionAnimate.vue'
+import axios from 'axios';
+
 export default {
   name: 'App',//当前组件的名称
   // el:'#app',//
@@ -62,7 +65,8 @@ export default {
     // SchoolName
     HeaderInput,ListInput,FooterShow,
     Student,School,
-    Father
+    Father,
+    TransitionAnimate
   },
   mounted:function(){//页面渲染完成 可以写代码了 操作DOM
   //  console.log(this,"APP");
@@ -115,6 +119,16 @@ export default {
     },
     clickTest(){
 
+    },
+    getStudentName(){
+      axios.get("http://localhost:8080/zgrget/students").then(
+        response=>{
+          console.log('获得请求数据',response.data)
+        },
+        error=>{
+          console.log('请求失败了',error.message);
+        }
+      )
     }
   },
   watch:{//观察数据
