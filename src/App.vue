@@ -24,6 +24,17 @@
    <father v-if="false"/>
    <TransitionAnimate v-if="false"/>
    <button @click="getStudentName" v-if="false">获取学生信息</button>
+
+   <div class="search">
+     <Search/>
+     <List/>
+   </div>
+
+
+
+
+
+
   </div>
 </template>
 
@@ -39,6 +50,8 @@ import School from './components/customizeEvent/School'
 import Father from './components/pubsub/Father.vue'
 import TransitionAnimate from './components/TransitionAnimate.vue'
 import axios from 'axios';
+import List from './components/search/List.vue'
+import Search from './components/search/Search.vue'
 
 export default {
   name: 'App',//当前组件的名称
@@ -66,7 +79,9 @@ export default {
     HeaderInput,ListInput,FooterShow,
     Student,School,
     Father,
-    TransitionAnimate
+    TransitionAnimate,
+    List,
+    Search
   },
   mounted:function(){//页面渲染完成 可以写代码了 操作DOM
   //  console.log(this,"APP");
@@ -152,7 +167,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style >
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -170,4 +185,9 @@ export default {
   border: 0.1rem solid rgba(00,00,00,0.3);
   border-radius:0.4rem;
 }
+.search{
+  margin: 15px;
+}
+
+
 </style>
