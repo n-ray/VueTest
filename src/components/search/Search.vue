@@ -25,6 +25,7 @@ export default {
         searchUsers(){
             //点的时候让欢迎的h1消失，显示loading
             pubsub.publish('sendData',{isWelCome:false,isloading:true,errorMsg:'',cards:[]});
+            // this.$http.get(`https://api.github.com/search/users?q=${this.keyWrold}`).then(//请求github的users接口
             axios.get(`https://api.github.com/search/users?q=${this.keyWrold}`).then(//请求github的users接口
                 response=>{
                     console.log('请求成功：', response.data);//请求成功loading隐藏显示搜索的信息
