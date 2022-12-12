@@ -1,7 +1,8 @@
 <template>
   <div class="category">
     <h3>{{ title }}分类</h3>
-    <slot></slot>
+    <slot name="slot1">当插槽里没有东西的时候这句话就会显示</slot>
+    <slot name="slot2">当插槽里没有东西的时候这句话就会显示</slot>
   </div>
 </template>
 
