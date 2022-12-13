@@ -30,7 +30,8 @@
      <List/>
    </div>
   <div class="slotTest">
-    <default-slot/>
+    <!-- <default-slot/> -->
+    <new-slot/>
   </div>
 
 
@@ -55,6 +56,7 @@ import axios from 'axios';
 import List from './components/search/List.vue'
 import Search from './components/search/Search.vue'
 import DefaultSlot from './components/slot/DefaultSlot.vue'
+import NewSlot from './components/slot/NewSlot.vue'
 
 export default {
   name: 'App',//当前组件的名称
@@ -85,7 +87,8 @@ export default {
     TransitionAnimate,
     List,
     Search,
-    DefaultSlot
+    DefaultSlot,
+    NewSlot
   },
   mounted:function(){//页面渲染完成 可以写代码了 操作DOM
   //  console.log(this,"APP");
