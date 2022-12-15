@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>数字的和是：{{ $store.state.sum }}</h1>
-    <h1>数字的和乘以10是：{{ $store.getters.bigSum }}</h1>
+    <h1>数字的和是：{{ sum }}</h1>
+    <h1>数字的和乘以10是：{{ bigSum }}</h1>
+    <h1>学校：{{ school }},名字是：{{ name }}</h1>
     <select v-model.number="tempNum">
         <option value="1">1</option>
         <option value="2">2</option>
@@ -15,13 +16,34 @@
 </template>
 
 <script>
+import { mapState,mapGetters } from 'vuex';
 export default {
     name:"Count",
     data() {
         return {
-            sum: 1,
+            // sum: 1,
             tempNum:1
         }
+    },
+    computed: {
+        //正常写法
+        /* sum() {
+            return this.$store.state.sum; 
+        },
+        school() {
+            return this.$store.state.school; 
+        },
+        name() {
+            return this.$store.state.name; 
+        },
+        bigSum(){
+            return this.$store.getters.bigSum;
+        }, */
+        //用mapstate从state中读取数据...解构赋值 computed中写入对象的每一个键值对
+        ...mapState({sum:'sum',school:'school',name:'name'}),//对象写法
+        // ...mapState(['sum','school','name'])//数组写法
+        // ...mapGetters({bigSum:"bigSum"}),//对象写法
+        ...mapGetters(['bigSum'])//数组写法
     },
     methods: {
         addClick(){

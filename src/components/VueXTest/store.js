@@ -3,7 +3,9 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 //用来储存数据
 const state = {
- sum:0
+ sum:0,
+ school:'ZZ',
+ name:'ass'
 }
 const getters = {
     bigSum(state){
