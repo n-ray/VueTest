@@ -5,6 +5,11 @@ Vue.use(Vuex);
 const state = {
  sum:0
 }
+const getters = {
+    bigSum(state){
+        return state.sum * 10;
+    }
+}
 //用来相应动作
 const actions = {
     //没有业务逻辑和ajax请求可以直接再组件中commit
@@ -42,4 +47,4 @@ const mutations = {
     }
 }
 
-export default new Vuex.Store({state,mutations,actions});
+export default new Vuex.Store({state,mutations,actions,getters});

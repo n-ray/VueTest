@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>数字的和是：{{ $store.state.sum }}</h1>
+    <h1>数字的和乘以10是：{{ $store.getters.bigSum }}</h1>
     <select v-model.number="tempNum">
         <option value="1">1</option>
         <option value="2">2</option>
