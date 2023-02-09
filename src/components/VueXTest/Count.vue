@@ -28,7 +28,7 @@ export default {
     data() {
         return {
             // sum: 1,
-            tempNum:1
+            tempNum:1,
         }
     },
     computed: {
