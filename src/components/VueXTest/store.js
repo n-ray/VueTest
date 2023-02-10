@@ -35,7 +35,7 @@ const actions = {
 //用来操作数据
 const mutations = {
     ADD(state,value){
-        // console.log(state,value);
+        console.log(state,value);
         state.sum += value;
     },
     REDUCE(state,value){

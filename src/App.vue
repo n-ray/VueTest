@@ -34,7 +34,8 @@
     <new-slot/>
   </div>
   <div>
-    <count/>
+    <!-- <count/> -->
+    <moduleCount/>
   </div>
 
 
@@ -60,6 +61,7 @@ import Search from './components/search/Search.vue'
 import DefaultSlot from './components/slot/DefaultSlot.vue'
 import NewSlot from './components/slot/NewSlot.vue'
 import Count from './components/VueXTest/Count.vue'
+import moduleCount from './components/VueXTest/moduleCount.vue'
 
 export default {
   name: 'App',//当前组件的名称
@@ -92,7 +94,8 @@ export default {
     Search,
     DefaultSlot,
     NewSlot,
-    Count
+    Count,
+    moduleCount
   },
   mounted:function(){//页面渲染完成 可以写代码了 操作DOM
   //  console.log(this,"APP");
@@ -168,10 +171,6 @@ export default {
   beforeDestroy(){
     this.$bus.$off('updateItme');
   }
-
-
-
-
 
   
 

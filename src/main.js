@@ -5,6 +5,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import VueResource from 'vue-resource';
 import store from './components/VueXTest/store'
+import moduleStore from './components/VueXTest/moduleStore';
 Vue.config.productionTip = false
 Vue.use(MyPlugin);//使用插件
 Vue.use(ElementUI);
@@ -12,7 +13,8 @@ Vue.use(VueResource);
 
 new Vue({
   render: h => h(App), 
-  store,//store:store,简写
+  // store,//store:store,简写
+  store:moduleStore,
   beforeCreate(){
     Vue.prototype.$bus = this;//安装全局事件总线  把$bus挂到Vue的prototype上 这样所有的组件都能拿到然后通过这个$bus来传递数据
   }           

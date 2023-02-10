@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>数字的和是：{{ sum }}</h1>
-    <h1>数字的和乘以10是：{{ bigSum }}</h1>
+    <h1>数字的和乘以10是:{{ bigSum }}</h1>
     <h1>学校：{{ school }},名字是：{{ name }}</h1>
     <select v-model.number="tempNum">
         <option value="1">1</option>
@@ -11,7 +11,7 @@
     <!-- 如果使用mapActions和mapMutations的话要传递参数不然拿到的是默认的$event -->
     <button @click="addClick(tempNum)">+</button>
     <button @click="reduceClick(tempNum)">—</button>
-    <button @click="sigleClick(tempNum)">基数才加</button>
+    <button @click="singleClick(tempNum)">基数才加</button>
     <button @click="waitClick(tempNum)">等下再加</button>
     <!-- 用数组的时候名字用下边的 -->
     <!-- <button @click="ADD(tempNum)">+</button> -->
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { mapState,mapGetters,mapActions,mapMutations} from 'vuex';
+import { mapState,mapGetters,mapActions,mapMutations } from 'vuex';
 export default {
     name:"Count",
     data() {
@@ -30,6 +30,9 @@ export default {
             // sum: 1,
             tempNum:1,
         }
+    },
+    mounted(){
+        console.log(this.$store,"xxx");
     },
     computed: {
         //正常写法
@@ -62,7 +65,7 @@ export default {
             // this.$store.dispatch('reduce',this.tempNum);
             this.$store.commit('REDUCE',this.tempNum);
         },
-        sigleClick(){
+        singleClick(){
             // if (this.sum % 2) {
                 // this.sum += this.tempNum;
                 // }
@@ -76,7 +79,7 @@ export default {
             this.$store.dispatch('addWait',this.tempNum);
         },*/ 
         //借助mapActions生产对应的方法，方法中会调用dispatch去联系actions
-        ...mapActions({sigleClick:'addOdd',waitClick:'addWait'}),
+        ...mapActions({singleClick:'addOdd',waitClick:'addWait'}),
         // ...mapActions(['addOdd','addWait']),//数组的时候要注意改上边的名字
         //mapMutations会调用commit联系mutations
         ...mapMutations({addClick:'ADD',reduceClick:'REDUCE'}),
@@ -86,6 +89,9 @@ export default {
 </script>
 
 <style scoped>
+div{
+    margin: 15px;
+}
  button{
     margin-left: 5px;
  }
