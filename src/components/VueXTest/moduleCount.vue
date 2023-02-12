@@ -46,8 +46,13 @@
           ...mapActions('count',{singleClick:'addOdd',waitClick:'addWait'}),
           // ...mapActions(['addOdd','addWait']),//数组的时候要注意改上边的名字
           //mapMutations会调用commit联系mutations
-          ...mapMutations('count',{addClick:'ADD',reduceClick:'REDUCE'}),
+        //   ...mapMutations('count',{addClick:'ADD',reduceClick:'REDUCE'}),
+        ...mapMutations('count',{reduceClick:'REDUCE'}),//在下边用另外的方式添加了ADD
           // ...mapMutations(['ADD','REDUCE'])//数组的时候要注意改上边的名字
+          //当不用mapMutation方法的时候写法有些不同要注意
+          addClick(){
+            this.$store.commit('count/ADD',this.tempNum);//这里是给ADD方法前边加上store中的名字和/构成
+        },
       },
   }
   </script>
