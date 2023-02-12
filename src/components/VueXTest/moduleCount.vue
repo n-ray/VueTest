@@ -39,7 +39,10 @@
           ...mapState('other',{school:'school',name:'name'}),//对象写法 不能使用简写形式{sum,school}因为后边的是字符串不是对象
           // ...mapState(['sum','school','name'])//数组写法
           // ...mapGetters({bigSum:"bigSum"}),//对象写法
-          ...mapGetters('count',['bigSum'])//数组写法
+          // ...mapGetters('count',['bigSum']),//数组写法
+          bigSum(){//原始写法
+            return this.$store.getters['count/bigSum'];
+         }
       },
       methods: {
           //借助mapActions生产对应的方法，方法中会调用dispatch去联系actions
