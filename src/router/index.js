@@ -30,7 +30,8 @@ export default new VueRouter({
                 children:[
                     { 
                         name:'detail',
-                        path: 'detail', 
+                        // path: 'detail', //用query传递参数
+                        path:'detail/:key/:title',//用params传递参数
                         component: Detail 
                       }
                 ]
