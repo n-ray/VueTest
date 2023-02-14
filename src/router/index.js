@@ -4,6 +4,8 @@ import About from '../components/routeText/pages/About';
 import Home from '../components/routeText/pages/Home';
 import News from '../components/routeText/pages/News.vue';
 import Message from '../components/routeText/pages/Message.vue';
+import Detail from '../components/routeText/pages/Detail.vue'
+
 
 // Vue.use(VueRouter);
 
@@ -23,7 +25,13 @@ export default new VueRouter({
             },
             { 
                 path: 'message', 
-                component: Message 
+                component: Message,
+                children:[
+                    { 
+                        path: 'detail', 
+                        component: Detail 
+                      }
+                ]
             },
           ]
         },
