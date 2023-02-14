@@ -6,7 +6,8 @@
                 <!-- <router-link :to="`/home/message/detail?key=${msg.key}&title=${msg.title}`">{{ msg.title }}</router-link> -->
                 <!-- 用对象与用字符串是一样的效果 -->
                 <router-link :to="{
-                    path:'/home/message/detail',
+                    // path:'/home/message/detail',
+                    name:'detail',//路由命名可以代替path 用于简化多级路由path过长的问题，路由器router中要有对应的name属性
                     query:{
                         key:msg.key,
                         title:msg.title

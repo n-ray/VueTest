@@ -12,6 +12,7 @@ import Detail from '../components/routeText/pages/Detail.vue'
 export default new VueRouter({
     routes: [
         { 
+          name:'about',
           path: '/about', 
           component: About 
         },
@@ -28,6 +29,7 @@ export default new VueRouter({
                 component: Message,
                 children:[
                     { 
+                        name:'detail',
                         path: 'detail', 
                         component: Detail 
                       }
