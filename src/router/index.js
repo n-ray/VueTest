@@ -8,6 +8,7 @@ import Detail from '../components/routeText/pages/Detail.vue'
 // Vue.use(VueRouter);
 import store from '../components/VueXTest/store'
 const router = new VueRouter({
+    mode:'hash',//history
     routes: [
         { 
           name:'about',
@@ -24,7 +25,7 @@ const router = new VueRouter({
                 path: 'news', 
                 component: News ,
                 meta:{title:'news',isAuth:true},
-                beforeEnter(to,from,next){
+                beforeEnter(to,from,next){//独享路由守卫 （没有后置独享路由守卫）
                   if(to.meta.isAuth){//判定是否需要鉴定权限，判断当前路由是否需要进行权限控制
                     if(store.state.sum === 0){//权限控制的具体规则
                       next();//方形
