@@ -16,7 +16,10 @@
         <div class="panel">
           <div class="panel-body">
             <!-- 指定组件呈现的位置 -->
-           <router-view></router-view>
+            <keep-alive include="Home">
+          <!-- 让News组件不销毁，输入的东西可以得以保存 News是组件名称-->
+          <router-view></router-view>
+        </keep-alive>
           </div>
         </div>
       </div>

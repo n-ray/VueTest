@@ -10,7 +10,7 @@
           </li>
         </ul>
         <keep-alive include="News">
-          <!-- 让News组件不销毁，输入的东西可以得以保存 News是组件名称-->
+          <!-- 让News组件不销毁，输入的东西可以得以保存 News是组件名称，多个的时候写成数组:include="[News,Message]"-->
           <router-view></router-view>
         </keep-alive>
     </div>
