@@ -49,6 +49,7 @@
             ]
         }
       },
+      
       methods: {
         pushClick(msg) {
             this.$router.push({

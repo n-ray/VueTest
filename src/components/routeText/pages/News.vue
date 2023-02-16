@@ -9,8 +9,19 @@
   </template>
   
   <script>
+
   export default {
-      name:'News'
+      name:'News',
+      activated () {
+        this.timer = setInterval(() => {
+            console.log(123);
+        }, 500);
+        console.log('组件激活');
+      },
+      deactivated () {
+        console.log('组件失活');
+        clearInterval(this.timer);
+      }
   }
   </script>
   

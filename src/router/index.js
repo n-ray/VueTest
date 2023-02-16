@@ -6,24 +6,40 @@ import News from '../components/routeText/pages/News.vue';
 import Message from '../components/routeText/pages/Message.vue';
 import Detail from '../components/routeText/pages/Detail.vue'
 // Vue.use(VueRouter);
-export default new VueRouter({
+import store from '../components/VueXTest/store'
+const router = new VueRouter({
     routes: [
         { 
           name:'about',
           path: '/about', 
-          component: About 
+          component: About,
+          meta:{title:'about'},//route中可以随意传递参数用来做路由守卫判断的值
         },
         { 
           path: '/home', 
           component: Home,
+          meta:{title:'home'},
           children:[
             { 
                 path: 'news', 
-                component: News 
+                component: News ,
+                meta:{title:'news',isAuth:true},
+                beforeEnter(to,from,next){
+                  if(to.meta.isAuth){//判定是否需要鉴定权限，判断当前路由是否需要进行权限控制
+                    if(store.state.sum === 0){//权限控制的具体规则
+                      next();//方形
+                    }else{
+                      alert('不匹配');
+                    }
+                  }else{
+                    next();
+                  }
+                }
             },
             { 
                 path: 'message', 
                 component: Message,
+                meta:{title:'Message',isAuth:true},
                 children:[
                     { 
                         name:'detail',
@@ -48,3 +64,22 @@ export default new VueRouter({
         },
     ]
 });
+//全局前置守卫，初始化时执行，每次路由切换前执行
+router.beforeEach((to,from,next)=>{
+  if(to.meta.isAuth){//判定是否需要鉴定权限，判断当前路由是否需要进行权限控制
+    if(store.state.sum === 0){//权限控制的具体规则
+      next();//方形
+    }else{
+      alert('不匹配');
+    }
+  }else{
+    next();
+  }
+}),
+//全局后置守卫，初始化时执行，每次路由切换后执行
+router.afterEach((to,from)=>{
+  document.title = to.meta.title || '哈哈'//切换成功后改变网页的title值
+})
+
+
+export default router;
